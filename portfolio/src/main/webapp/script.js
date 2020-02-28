@@ -13,7 +13,9 @@
 // limitations under the License.
 
 function getRandomGreeting() {
-    fetch('/data').then(response => response.text()).then((greeting) => {
-        document.getElementById('greeting-container').innerText = greeting;
+    fetch('/data').then(response => response.json()).then((greetings) => {
+        const greetingsListElement = document.getElementById('greeting-container');
+        greetingsListElement.innerHTML = greetings;
+        console.log(greetings);
     });
 }
