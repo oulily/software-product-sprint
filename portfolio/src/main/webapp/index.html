@@ -20,9 +20,15 @@
       </p>
       <img src="images/ghc2019.JPG" alt="2019 Grace Hopper Conference" width="400" height="400">
       <p> 2019 Grace Hopper Conference </p>
-      <p>Click here to get a random thought-provoking question.</p>
-      <button onclick="addRandomGreeting()">Hello</button>
+      <p>Click here to get a random greeting.</p>
+      <button onclick="getRandomGreeting()">Fetch greeting!</button>
       <div id="greeting-container"></div>
+      <br>
+      <form action="/data" method="POST">
+        <label>Enter a message:</label><br>
+        <input type="text" name="message-input"><br>
+        <input type="submit" />
+      </form>
     </div>
   </body>
 </html>
