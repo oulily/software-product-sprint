@@ -29,11 +29,7 @@ public class DataServlet extends HttpServlet {
 
   public void init() {
     messages = new ArrayList<String>();
-    messages.add("Hi there!");
-    messages.add("Welcome!");
-    messages.add("Hello!");
   }
-
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -42,9 +38,23 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(json);
   }
 
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+      String message = getParameter(request, "message-input", "");
+      messages.add(message);
+      response.sendRedirect("/index.html");
+  }
+
   private String convertToJson(ArrayList<String> messages) {
       Gson gson = new Gson();
       String json = gson.toJson(messages);
       return json;
+  }
+
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+      String value = request.getParameter(name);
+      if (value == null) {
+          return defaultValue;
+      }
+      return value;
   }
 }
