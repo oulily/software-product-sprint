@@ -19,3 +19,34 @@ function getRandomGreeting() {
         console.log(greetings);
     });
 }
+
+function getLoginStatus() {
+
+}
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+/** Creates a chart and adds it to the page. */
+function drawChart() {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Animal');
+    data.addColumn('number', 'Count');
+        data.addRows([
+            ['Fish', 158.1],
+            ['Cat', 94.2],
+            ['Dog', 89.7],
+            ['Bird', 20.3],
+            ['Reptile', 9.4]
+        ]);
+    
+    const options = {
+        'title': 'Pets in America',
+        'width':500,
+        'height':400
+    };
+
+    const chart = new google.visualization.PieChart(document.getElementById('chart-container'));
+    chart.draw(data, options);
+
+}
