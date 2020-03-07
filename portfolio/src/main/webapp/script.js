@@ -43,8 +43,8 @@ function drawPetChart() {
         ]); 
     const options = {
         'title': 'Pets in America',
-        'width':500,
-        'height':400
+        'width':450,
+        'height':300
     };
     const chart = new google.visualization.PieChart(document.getElementById('pet-chart-container'));
     chart.draw(data, options);
@@ -64,7 +64,7 @@ function drawLanguageChart() {
     const options = {
       'title': 'Most Spoken Languages in the World',
       'width':700,
-      'height':500
+      'height':450
     };
 
     const chart = new google.visualization.BarChart(
@@ -86,8 +86,8 @@ function drawFoodChart() {
 
     const options = {
       'title': 'Food Preferences',
-      'width':600,
-      'height':500
+      'width':500,
+      'height':450
     };
 
     const chart = new google.visualization.ColumnChart(
