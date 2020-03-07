@@ -27,6 +27,7 @@ function getLoginStatus() {
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawPetChart);
 google.charts.setOnLoadCallback(drawLanguageChart);
+google.charts.setOnLoadCallback(drawFoodChart);
 
 /** Creates a chart and adds it to the page. */
 function drawPetChart() {
@@ -68,6 +69,29 @@ function drawLanguageChart() {
 
     const chart = new google.visualization.BarChart(
         document.getElementById('language-chart-container'));
+    chart.draw(data, options);
+  });
+}
+
+/** Fetches food data and uses it to create a chart. */
+function drawFoodChart() {
+  fetch('/food-data').then(response => response.json())
+  .then((foodVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Preference');
+    data.addColumn('number', 'Votes');
+    Object.keys(foodVotes).forEach((preference) => {
+      data.addRow([preference, foodVotes[preference]]);
+    });
+
+    const options = {
+      'title': 'Food Preferences',
+      'width':600,
+      'height':500
+    };
+
+    const chart = new google.visualization.ColumnChart(
+        document.getElementById('food-chart-container'));
     chart.draw(data, options);
   });
 }

@@ -40,10 +40,21 @@
         <input type="submit" />
       </form>
       <br>
-      <h1>PETS</h1>
+      <h1>Pets</h1>
       <div id="pet-chart-container"></div>
-      <h1>LANGUAGES</h1>
+      <h1>Languages</h1>
       <div id="language-chart-container"></div>
+      <h1>Food: Sweet or Salty?</h1>
+        <form action="/food-data" method="POST">
+            <input type="radio" name="taste-preference" value="Sweet">
+            <label for"Sweet">Sweet</label>
+            <input type="radio" name="taste-preference" value="Salty">
+            <label for"Salty">Salty</label>
+            <input type="radio" name="taste-preference" value="Both">
+            <label for"Both">Both</label>
+            <button>Submit</button>
+        </form>
+        <div id="food-chart-container"></div>
     </div>
   </body>
 </html>
