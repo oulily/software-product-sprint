@@ -1,3 +1,38 @@
+body {
+  background-color: #c6d5e4;
+  color: #000000;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#navbar {
+  margin:-8px -8px 5px -8px;
+  text-align: center;
+}
+
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #8191a2;
+}
+
+#navbar li {
+  display: inline-block;
+}
+
+#navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#navbar li a:hover {
+  background-color: #767f8a;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;

@@ -19,3 +19,79 @@ function getRandomGreeting() {
         console.log(greetings);
     });
 }
+
+function getLoginStatus() {
+
+}
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawPetChart);
+google.charts.setOnLoadCallback(drawLanguageChart);
+google.charts.setOnLoadCallback(drawFoodChart);
+
+/** Creates a chart and adds it to the page. */
+function drawPetChart() {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Animal');
+    data.addColumn('number', 'Count');
+        data.addRows([
+            ['Fish', 158.1],
+            ['Cat', 94.2],
+            ['Dog', 89.7],
+            ['Bird', 20.3],
+            ['Reptile', 9.4]
+        ]); 
+    const options = {
+        'title': 'Pets in America',
+        'width':450,
+        'height':300
+    };
+    const chart = new google.visualization.PieChart(document.getElementById('pet-chart-container'));
+    chart.draw(data, options);
+}
+
+/** Fetches language data and uses it to create a chart. */
+function drawLanguageChart() {
+  fetch('/language-data').then(response => response.json())
+  .then((mostSpokenLanguages) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Language');
+    data.addColumn('number', 'Population (Millions)');
+    Object.keys(mostSpokenLanguages).forEach((language) => {
+      data.addRow([language, mostSpokenLanguages[language]]);
+    });
+
+    const options = {
+      'title': 'Most Spoken Languages in the World',
+      'width':700,
+      'height':450
+    };
+
+    const chart = new google.visualization.BarChart(
+        document.getElementById('language-chart-container'));
+    chart.draw(data, options);
+  });
+}
+
+/** Fetches food data and uses it to create a chart. */
+function drawFoodChart() {
+  fetch('/food-data').then(response => response.json())
+  .then((foodVotes) => {
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Preference');
+    data.addColumn('number', 'Votes');
+    Object.keys(foodVotes).forEach((preference) => {
+      data.addRow([preference, foodVotes[preference]]);
+    });
+
+    const options = {
+      'title': 'Food Preferences',
+      'width':500,
+      'height':450
+    };
+
+    const chart = new google.visualization.ColumnChart(
+        document.getElementById('food-chart-container'));
+    chart.draw(data, options);
+  });
+}
